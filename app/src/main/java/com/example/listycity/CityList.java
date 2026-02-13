@@ -1,37 +1,34 @@
 package com.example.listycity;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 /**
- * This class keeps a list of city objects and manages adding, deleting, and sorting them.
+ * This is a class that keeps track of a list of city objects
  */
 public class CityList {
     private List<City> cities = new ArrayList<>();
-
     /**
-     * Adds a city to the list.
-     * @param city The city to add
-     * @throws IllegalArgumentException If the city already exists in the list
+     * This adds a city to the list if the city does not exist
+     * @param city
+     * This is a candidate city to add
      */
+
     public void add(City city) {
         if (cities.contains(city)) {
             throw new IllegalArgumentException();
         }
         cities.add(city);
     }
-
     /**
-     * Returns a sorted list of cities.
-     * @return The sorted list of cities
+     * This returns a sorted list of cities
+     * @return
+     * Return the sorted list
      */
     public List<City> getCities() {
         List<City> list = cities;
         Collections.sort(list);
         return list;
     }
-
     /**
      * Checks if a specific city is present in the list.
      * @param city The city to check for
@@ -42,9 +39,9 @@ public class CityList {
     }
 
     /**
-     * Removes a city from the list.
+     * Removes a city from the list if it exists.
      * @param city The city to remove
-     * @throws IllegalArgumentException If the city does not exist in the list
+     * @throws IllegalArgumentException if the city is not found in the list
      */
     public void delete(City city) {
         if (!cities.contains(city)) {
@@ -55,9 +52,10 @@ public class CityList {
 
     /**
      * Returns the total number of cities in the list.
-     * @return The count of cities
+     * @return The size of the list
      */
     public int countCities() {
         return cities.size();
     }
+
 }

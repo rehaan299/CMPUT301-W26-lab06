@@ -1,60 +1,44 @@
 package com.example.listycity;
+import java.util.Objects;
 
 /**
- * This class defines a City with a name and a province.
- * It implements Comparable to support sorting by city name.
+ * This is a class that defines a City.
  */
 public class City implements Comparable<City> {
     private String city;
     private String province;
-
-    /**
-     * Constructor for the City class.
-     * @param city The name of the city
-     * @param province The name of the province
-     */
-    public City(String city, String province){
+    City(String city, String province){
         this.city = city;
         this.province = province;
     }
-
-    /**
-     * Gets the city name.
-     * @return The name of the city
-     */
     String getCityName(){
         return this.city;
-    }
 
-    /**
-     * Gets the province name.
-     * @return The name of the province
-     */
+
+    }
     String getProvinceName(){
         return this.province;
     }
 
-    /**
-     * Compares this city with another city for sorting purposes.
-     * @param city The other city to compare to
-     * @return A negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
-     */
     @Override
-    public int compareTo(City city) {
+    public int compareTo(City o) {
+        City city = (City) o;
         return this.city.compareTo(city.getCityName());
-    }
 
+    }
     /**
-     * Checks if two cities are considered equal (same name and province).
+     * Checks if this city is equal to another object.
+     * Equality is based on city name and province name.
      * @param o The object to compare with
-     * @return True if objects are equal, false otherwise
+     * @return True if the objects are equal, false otherwise
      */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city1 = (City) o;
-        return city.equals(city1.city) && province.equals(city1.province);
+        return Objects.equals(city, city1.city) &&
+                Objects.equals(province, city1.province);
     }
 
     /**
@@ -63,6 +47,6 @@ public class City implements Comparable<City> {
      */
     @Override
     public int hashCode() {
-        return city.hashCode() + province.hashCode();
+        return Objects.hash(city, province);
     }
 }
